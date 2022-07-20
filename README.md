@@ -1,31 +1,25 @@
-# Shop Angular Cloudfront
+## Cloudfront URL
 
-Angular version: ~12.
+https://d3i6ehyl8qm7qy.cloudfront.net/
 
-Repo maintainers:
+## S3 URL
 
-- [Sergey Gultyayev](https://github.com/gultyaev)
+https://shop-angular-cloudfront.s3.eu-central-1.amazonaws.com/
 
-## The purpose
+## Commands
 
-The repository was created to have an Angular version of e-shop for EPAM NodeJS AWS course. At the same time we strive to make this repository follows best practices so it may be used as a starter for new projects with all the necessary toolings already set up.
+### Build
 
-## NodeJS AWS course integration
+npm run build
 
-All the necessary API endpoints are in the environments files `environment.ts` (for dev builds). Also it contains feature flags to enable/disable endpoints invocations from within the app so to ensure that you don't get errors for not implemented API endpoints.
+### Deploy to S3
 
-## Contribution
+npm run deploy
 
-Create an issue with the detailed description of the improvement/issue.
+### Invalidate CloudFront cache
 
-If you would like to help implementing some feature, you should ask the maintainers for approval so to ensure that the feature is desired in the repository and no efforts go wasted.
+npm run cloudfront:invalidateCache
 
-## Get up and running
+### Build + Deploy + Invalidate cache
 
-Prerequisites: NodeJS v14
-
-Follow the steps:
-
-- git clone
-- npm i
-- ng serve
+npm run deploy:full
