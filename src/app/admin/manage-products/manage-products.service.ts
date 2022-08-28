@@ -31,11 +31,31 @@ export class ManageProductsService extends ApiService {
 
   private getPreSignedUrl(fileName: string): Observable<string> {
     const url = this.getUrl('import', 'import');
+    const authorizationToken = this.getAuthorizationTokenBase64();
 
     return this.http.get<string>(url, {
       params: {
         name: fileName,
       },
+      headers: {
+        authorization: `Basic ${authorizationToken}`,
+      },
     });
+  }
+
+  private getAuthorizationTokenBase64(): string {
+    const authorizationToken =
+      localStorage.getItem('authorization_token') || '';
+
+    try {
+      const base64EncodedAuthorizationToken = btoa(authorizationToken);
+      return base64EncodedAuthorizationToken;
+    } catch (error) {
+      console.log(
+        `Error while base64 encoding authorization token ${authorizationToken}: `,
+        error
+      );
+      return '';
+    }
   }
 }
